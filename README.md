@@ -1,8 +1,6 @@
 <img src="https://github.com/sulimanbadour1/Price4U/blob/main/public/assets/sul-src/price4u.png?raw=true" alt ="Price4U logo" width='50px'/>
 
-# Price4U
-
-<img src="https://github.com/sulimanbadour1/Price4U/blob/main/public/screens/src1.png?raw=true" alt="Banner" width="360px"/>
+# Price4U <img src="https://github.com/sulimanbadour1/Price4U/blob/main/public/screens/src1.png?raw=true" alt="Banner" width="360px"/>
 
 ## Overview
 

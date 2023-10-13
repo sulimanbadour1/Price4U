@@ -1,6 +1,6 @@
 # Price4U
 
-<img src="" alt ="Price4U logo"/>
+<img src="https://github.com/sulimanbadour1/Price4U/blob/main/public/assets/sul-src/price4u.png?raw=true" alt ="Price4U logo" width='50px'/>
 
 ## Overview
 
@@ -21,4 +21,4 @@ Feel free to contribute to Price4U by submitting pull requests or opening issues
 
 MIT License. See `LICENSE` for more information.
 
-<img src="" alt=""/>
+<img src="" alt="https://github.com/sulimanbadour1/Price4U/blob/main/public/screens/scr1.png?raw=true"/>

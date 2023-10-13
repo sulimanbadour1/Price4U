@@ -21,4 +21,4 @@ Feel free to contribute to Price4U by submitting pull requests or opening issues
 
 MIT License. See `LICENSE` for more information.
 
-<img src="" alt="https://github.com/sulimanbadour1/Price4U/blob/main/public/screens/scr1.png?raw=true"/>
+<img src="https://github.com/sulimanbadour1/Price4U/blob/main/public/screens/scr1.png?raw=true" alt="Banner"/>

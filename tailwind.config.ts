@@ -37,8 +37,12 @@ module.exports = {
       },
       borderRadius: {
         10: "10px"
-      }
+      },
+      // backgroundImage: {
+      //   "hero-pattern": "url('/public/assets/sul-src/scr3.png')",
+      // },
     },
   },
+
   plugins: [],
 };

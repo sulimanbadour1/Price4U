@@ -12,6 +12,7 @@ Price4U is an eCommerce price tracker that allows users to monitor product price
 
 - **Framework**: Next.js 15
 - **Library**: React.js
+- **Carousel** : React Responsive Carousel.
 - **Styling**: Tailwind CSS
 - **Web Scraping**: Bright Data
 

@@ -1,9 +1,9 @@
 "use client";
-import React from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-import Image from "next/image";
-import { Player, Controls } from "@lottiefiles/react-lottie-player";
+// import React from "react";
+// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+// import { Carousel } from "react-responsive-carousel";
+// import Image from "next/image";
+import { Player, Controls } from "@lottiefiles/react-lottie-player"; // some fuckin bug
 
 const heroImages = [
   {
@@ -55,8 +55,8 @@ const HeroCarousel = () => {
         loop={true}
         src="/assets/anim/anim5.json"
         style={{
-          height: "580px",
-          width: "600px",
+          height: "480px",
+          width: "500px",
           zIndex: 1,
         }}
         className="hidden xl:block scale-75 lg:scale-100"

@@ -1,4 +1,6 @@
 "use client";
+
+import { scrapeAndStoreProduct } from "@/lib/actions";
 import React, { FormEvent, useState } from "react";
 //  TODO: Add validation for amazon product URL
 
@@ -23,8 +25,9 @@ const isValidAmazonProductURL = (url: string) => {
 };
 const SearchBar = () => {
   const [searchPrompt, setSearchPrompt] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLElement>) => {
     event.preventDefault();
     console.log(searchPrompt);
     setSearchPrompt("");
@@ -34,6 +37,16 @@ const SearchBar = () => {
     // alert(isValid ? "Valid URL" : "Invalid URL");
     if (!isValid) {
       alert("please enter a valid amazon product URL");
+    }
+    try {
+      setIsLoading(true);
+      // scrape the product page
+      const response = await scrapeAndStoreProduct(searchPrompt);
+    } catch (error) {
+      console.log(error);
+      alert("Something went wrong, please try again later");
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -45,8 +58,12 @@ const SearchBar = () => {
         type="text"
         placeholder="Search for products"
       />
-      <button className="searchbar-btn" type="submit">
-        Search
+      <button
+        disabled={searchPrompt.length === 0}
+        className="searchbar-btn"
+        type="submit"
+      >
+        {isLoading ? "Searching..." : "Search"}
       </button>
     </form>
   );

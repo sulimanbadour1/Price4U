@@ -38,6 +38,15 @@ module.exports = {
       borderRadius: {
         10: "10px"
       },
+      screens: {
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1536px',
+        // Add or modify breakpoints as needed
+      },
+
       // backgroundImage: {
       //   "hero-pattern": "url('/public/assets/sul-src/scr3.png')",
       // },

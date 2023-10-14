@@ -2,13 +2,13 @@ import HeroCarousel from "@/components/HeroCarousel";
 import SearchBar from "@/components/SearchBar";
 import Image from "next/image";
 import React from "react";
-//bg-[url('/assets/sul-src/icon-no-back.png')]
+// Background Image
+//bg-[url('/assets/sul-src/two.png')] bg-no-repeat bg-full bg-center
 const page = () => {
-  //bg-[url('/assets/sul-src/two.png')] bg-no-repeat bg-full bg-center
   return (
     <>
-      <section className="px-6 md:px-20 py-8 rounded-xl">
-        <div className="flex max-xl:flex-col gap-16 ">
+      <section className="px-6 md:px-20 pt-12 py-4 rounded-xl ">
+        <div className="flex max-xl:flex-col gap-36">
           <div className="flex flex-col justify-center">
             <p className="small-text">
               Your Budget's Best Friend
@@ -19,13 +19,14 @@ const page = () => {
                 height={16}
               />
             </p>
-            <h1 className=" head-text text-5xl font-bold">
+            <h1 className="head-text text-5xl font-bold">
               Shop Smarter, Save Bigger with
-              <span className="text-primary"> Price4U.</span>
+              <span className="text-primary "> Price4U.</span>
             </h1>
-            <p className="mt-6 font-semibold">
-              Real-time price tracking across online stores. Shop smart and save
-              with every deal.
+            <p className="mt-6 font-semibold ">
+              Real-time price tracking across online stores.
+              <br />
+              Shop smart and save with every deal.
             </p>
             <SearchBar />
           </div>

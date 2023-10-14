@@ -3,6 +3,7 @@ import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
+import { Player, Controls } from "@lottiefiles/react-lottie-player";
 
 const heroImages = [
   {
@@ -29,8 +30,8 @@ const heroImages = [
 
 const HeroCarousel = () => {
   return (
-    <div className="hero-carousel">
-      <Carousel
+    <div className="flex justify-evenly items-center">
+      {/* <Carousel
         autoPlay={true}
         infiniteLoop={true}
         showThumbs={false}
@@ -42,20 +43,29 @@ const HeroCarousel = () => {
           <Image
             src={image.imageUrl}
             alt={image.alt}
-            width={480}
-            height={480}
+            width={470}
+            height={470}
             className="object-contain"
             key={image.alt}
           />
         ))}
-      </Carousel>
-      <Image
-        src="/assets/icons/hand-drawn-arrow.svg"
-        alt="arrow"
-        width={175}
-        height={175}
-        className="max-xl:hidden absolute -left-[15%] bottom-0 z-0"
-      />
+      </Carousel> */}
+      <Player
+        autoplay
+        loop={true}
+        src="/assets/anim/anim5.json"
+        style={{
+          height: "580px",
+          width: "600px",
+          zIndex: 1,
+        }}
+        className="hidden xl:block scale-75 lg:scale-100"
+      >
+        <Controls
+          visible={false}
+          buttons={["play", "repeat", "frame", "debug"]}
+        />
+      </Player>
     </div>
   );
 };

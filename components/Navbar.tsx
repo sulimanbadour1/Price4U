@@ -18,7 +18,7 @@ const navIcons = [
 ];
 const Navbar = () => {
   return (
-    <header className="w-full  ">
+    <header className="max-w-full border-b-2 pb-4 border-primary border-opacity-25">
       <nav className="nav">
         <Link href="/" className="flex items-center gap-1">
           <Image

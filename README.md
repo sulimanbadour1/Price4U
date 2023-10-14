@@ -1,3 +1,5 @@
+[![wakatime](https://wakatime.com/badge/user/d7fffb39-631e-454c-9cce-bb60e92d14c5/project/018b2999-77e1-4dcf-9495-40926a3c41a5.svg)](https://wakatime.com/badge/user/d7fffb39-631e-454c-9cce-bb60e92d14c5/project/018b2999-77e1-4dcf-9495-40926a3c41a5)
+
 <img src="https://github.com/sulimanbadour1/Price4U/blob/main/public/assets/sul-src/price4u.png?raw=true" alt ="Price4U logo" width='50px'/>
 
 # Price4U

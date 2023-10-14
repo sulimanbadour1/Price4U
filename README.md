@@ -2,7 +2,7 @@
 
 # Price4U
 
-<img src="https://github.com/sulimanbadour1/Price4U/blob/main/public/screens/demo.gif?raw=true" alt="Banner" width="460px"/>
+<img src="https://github.com/sulimanbadour1/Price4U/blob/main/public/screens/demo.gif?raw=true" alt="Banner" width="660px"/>
 
 ## Overview
 

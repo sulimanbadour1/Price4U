@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import { extractPrice } from '../ultils';
+import { extractCurrency, extractDescription, extractPrice } from '../ultils';
 
 export async function scrapeAmazaonProduct(url: string) {
     // Logic to scrape the product
@@ -32,8 +32,64 @@ export async function scrapeAmazaonProduct(url: string) {
         // console.log(response.data);
         const $ = cheerio.load(response.data);
         // Extract the data we need
+        // scraping the title
         const title = $('#productTitle').text().trim();
-        const currentPrice = extractPrice();
+        const currentPrice = extractPrice(
+            // $('.priceToPay span.a-price-whole'),
+            $('span.a-price-whole'),
+            // $('.a-button-selected .a-color-base')
+        );
+        // Scraping the original price
+
+        const originalPrice = extractPrice(
+            $('#priceblock_ourprice'),
+            $('#priceblock_dealprice'),
+            $('.a-price.a-text-price span.a-offscreen'));
+        $('#listPrice');
+        $('#priceblock_saleprice');
+        $('.a-size-base.a-color-price');
+
+
+        // check if the product is available
+        const outOfStock = $('#availability span .a-color-state').text().trim().toLowerCase()
+            === 'Currently unavailable.';
+
+        // get the image 
+        const images =
+            $('#imgBlkFront').attr('data-a-dynamic-image') ||
+            $('#landingImage').attr('data-a-dynamic-image') ||
+            '{}';
+
+        const imageUrls = Object.keys(JSON.parse(images));
+
+        const currency = extractCurrency($('.a-price-symbol'))
+
+        const discountRate = $('.savingsPercentage').text().replace(/[-%]/g, '')
+        const description = extractDescription($)
+
+
+        // // Return the data
+        // // console.log({ title, currentPrice, originalPrice, outOfStock, imageUrls, discountRate });
+        // console.log({ title, currentPrice })
+
+
+        // Construct the product object with the data we extracted and scraped
+        const data = {
+            url,
+            currency: currency || 'USD',
+            image: imageUrls[0],
+            title,
+            description: description || '',
+            currentPrice: Number(currentPrice),
+            originalPrice: Number(originalPrice),
+            priceHistory: [],
+            discountRate: Number(discountRate),
+            isOutOfStock: outOfStock,
+            category: "General",
+            createdAt: new Date(),
+        }
+        console.log(data);
+        return data;
 
     } catch (error: any) {
         throw new Error(`Failed to scrape the product: ${error.message}`)

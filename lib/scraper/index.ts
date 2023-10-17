@@ -54,7 +54,7 @@ export async function scrapeAmazaonProduct(url: string) {
         const outOfStock = $('#availability span .a-color-state').text().trim().toLowerCase()
             === 'Currently unavailable.';
 
-        // get the image 
+        // get the image
         const images =
             $('#imgBlkFront').attr('data-a-dynamic-image') ||
             $('#landingImage').attr('data-a-dynamic-image') ||
@@ -80,15 +80,18 @@ export async function scrapeAmazaonProduct(url: string) {
             image: imageUrls[0],
             title,
             description: description || '',
-            currentPrice: Number(currentPrice),
-            originalPrice: Number(originalPrice),
+            currentPrice: Number(currentPrice) || Number(originalPrice),
+            originalPrice: Number(originalPrice) || Number(currentPrice),
             priceHistory: [],
             discountRate: Number(discountRate),
             isOutOfStock: outOfStock,
             category: "General",
             createdAt: new Date(),
+            lowestPrice: Number(currentPrice) || Number(originalPrice),
+            highestPrice: Number(originalPrice) || Number(currentPrice),
+            averagePrice: Number(currentPrice) || Number(originalPrice),
         }
-        console.log(data);
+        // console.log(data);
         return data;
 
     } catch (error: any) {

@@ -24,32 +24,23 @@ Price4U is an eCommerce price tracker that allows users to monitor product price
 
 # Product Schema
 
-- **url**: String (Required, Unique)
-- **currency**: String (Required)
-- **image**: String (Required)
-- **title**: String (Required)
-- **currentPrice**: Number (Required)
-- **originalPrice**: Number (Required)
-
-- **priceHistory**: Array of:
-
-  - **prices**: Number (Required)
-  - **date**: Date (Default: Date.now)
-
-- **highestPrice**: Number
-- **lowestPrice**: Number
-- **averagePrice**: Number
-- **discountRate**: Number
-- **description**: String
-- **category**: String
-- **reviewsCount**: Number
-- **isOutOfStock**: Boolean (Default: False)
-
-- **users**: Array of:
-
-  - **email**: String (Required, Unique)
-
-- **timestamps**: True
+- url
+- currency
+- image
+- title
+- currentPrice
+- originalPrice
+- priceHistory (Array: prices, date)
+- highestPrice
+- lowestPrice
+- averagePrice
+- discountRate
+- description
+- category
+- reviewsCount
+- isOutOfStock
+- users (Array: email)
+- timestamps
 
 ## Contribution
 

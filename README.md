@@ -15,9 +15,41 @@ Price4U is an eCommerce price tracker that allows users to monitor product price
 - **Framework**: Next.js 15
 - **Library**: React.js
 <!-- - **Carousel** : React Responsive Carousel. -->
+- **Data Base**: MongoDB.
 - **Styling**: Tailwind CSS
 - **Web Scraping**: Bright Data
 - **Axios & Cheerio**: server funcs.
+
+## Data Model:
+
+# Product Schema
+
+- **url**: String (Required, Unique)
+- **currency**: String (Required)
+- **image**: String (Required)
+- **title**: String (Required)
+- **currentPrice**: Number (Required)
+- **originalPrice**: Number (Required)
+
+- **priceHistory**: Array of:
+
+  - **prices**: Number (Required)
+  - **date**: Date (Default: Date.now)
+
+- **highestPrice**: Number
+- **lowestPrice**: Number
+- **averagePrice**: Number
+- **discountRate**: Number
+- **description**: String
+- **category**: String
+- **reviewsCount**: Number
+- **isOutOfStock**: Boolean (Default: False)
+
+- **users**: Array of:
+
+  - **email**: String (Required, Unique)
+
+- **timestamps**: True
 
 ## Contribution
 

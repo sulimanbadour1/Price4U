@@ -1,10 +1,11 @@
 'use server'
 
-
+import { revalidatePath } from 'next/cache'
 import { connect } from "http2";
 import { scrapeAmazaonProduct } from "../scraper";
 import { connectToDB } from "../mongoose";
 import Product from "../models/product.model";
+import { getAveragePrice, getHighestPrice, getLowestPrice } from "../ultils";
 
 // This file will be executed in the server side only
 export async function scrapeAndStoreProduct(productURL: string) {
@@ -22,13 +23,46 @@ export async function scrapeAndStoreProduct(productURL: string) {
         let product = scrapedProduct;
         // check if the product already exists
         const existingProduct = await Product.findOne({ url: scrapedProduct.url });
-        // Compare this snippet from lib/actions/index.ts:
+        if (existingProduct) {
+            const updatedPriceHistory: any = [...existingProduct.priceHistory, {
+                price: scrapedProduct.currentPrice,
+                date: Date.now()
+            }];
+            product = {
+                ...scrapedProduct,
+                priceHistory: updatedPriceHistory,
+                lowestPrice: getLowestPrice(updatedPriceHistory),
+                highestPrice: getHighestPrice(updatedPriceHistory),
+                averagePrice: getAveragePrice(updatedPriceHistory),
 
+            }
+        }
 
+        const newProduct = await Product.findOneAndUpdate(
+            { url: scrapedProduct.url },
+            product,
+            { new: true, upsert: true },
+        );
+        revalidatePath(`/products/${newProduct._id}`);
 
     } catch (error: any) {
         throw new Error(`Error scraping product: ${error.message}`)
 
     }
 
+}
+
+
+// This file will be executed in the server side only
+export async function getProductByID(productId: string) {
+    try {
+        // connect to the database
+        connectToDB();
+        const product = await Product.findOne({ _id: productId });
+        if (!product) return;
+        return product;
+    } catch (error: any) {
+        console.log("Error getting product by ID", error.message)
+
+    }
 }

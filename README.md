@@ -22,7 +22,7 @@ Price4U is an eCommerce price tracker that allows users to monitor product price
 
 ## Data Model:
 
-# Product Schema
+### Product Schema
 
 - url
 - currency

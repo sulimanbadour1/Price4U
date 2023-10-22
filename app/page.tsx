@@ -2,9 +2,12 @@ import HeroCarousel from "@/components/HeroCarousel";
 import SearchBar from "@/components/SearchBar";
 import Image from "next/image";
 import React from "react";
+import { getAllProducts } from "@/lib/actions";
+import ProductCard from "@/components/ProductCard";
 // Background Image
 //bg-[url('/assets/sul-src/two.png')] bg-no-repeat bg-full bg-center
-const page = () => {
+const page = async () => {
+  const allProducts = await getAllProducts();
   return (
     <>
       <section className="px-6 md:px-20 pt-12 py-4 rounded-xl ">
@@ -36,8 +39,8 @@ const page = () => {
       <section className="trending-section">
         <h2 className="section-text">Trending</h2>
         <div className="flex flex-wrap gap-x-8 gap-y-16">
-          {["Apple Iphone", "Book", "iPad"].map((product) => (
-            <div>{product}</div>
+          {allProducts?.map((product) => (
+            <ProductCard key={product._id} product={product} />
           ))}
         </div>
       </section>

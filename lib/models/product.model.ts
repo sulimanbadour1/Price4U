@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-
+import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
     url: { type: String, required: true, unique: true },
@@ -10,25 +9,23 @@ const productSchema = new mongoose.Schema({
     originalPrice: { type: Number, required: true },
     priceHistory: [
         {
-            prices: { type: Number, required: true },
+            price: { type: Number, required: true },
             date: { type: Date, default: Date.now }
-        }
+        },
     ],
-    highestPrice: { type: Number },
     lowestPrice: { type: Number },
+    highestPrice: { type: Number },
     averagePrice: { type: Number },
     discountRate: { type: Number },
     description: { type: String },
     category: { type: String },
     reviewsCount: { type: Number },
     isOutOfStock: { type: Boolean, default: false },
-    users: [{
-        email: { type: String, required: true, unique: true },
-    }
+    users: [
+        { email: { type: String, required: true } }
     ], default: [],
 }, { timestamps: true });
 
-
-const Product = mongoose.model('Product', productSchema) || mongoose.models.Product;
+const Product = mongoose.models.Product || mongoose.model('Product', productSchema);
 
 export default Product;

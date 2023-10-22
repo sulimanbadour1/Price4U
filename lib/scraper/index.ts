@@ -33,22 +33,21 @@ export async function scrapeAmazaonProduct(url: string) {
         const $ = cheerio.load(response.data);
         // Extract the data we need
         // scraping the title
+        // Extract the product title
         const title = $('#productTitle').text().trim();
         const currentPrice = extractPrice(
-            // $('.priceToPay span.a-price-whole'),
-            $('span.a-price-whole'),
-            // $('.a-button-selected .a-color-base')
+            $('.priceToPay span.a-price-whole'),
+            $('.a.size.base.a-color-price'),
+            $('.a-button-selected .a-color-base'),
         );
-        // Scraping the original price
 
         const originalPrice = extractPrice(
             $('#priceblock_ourprice'),
+            $('.a-price.a-text-price span.a-offscreen'),
+            $('#listPrice'),
             $('#priceblock_dealprice'),
-            $('.a-price.a-text-price span.a-offscreen'));
-        $('#listPrice');
-        $('#priceblock_saleprice');
-        $('.a-size-base.a-color-price');
-
+            $('.a-size-base.a-color-price')
+        );
 
         // check if the product is available
         const outOfStock = $('#availability span .a-color-state').text().trim().toLowerCase()
@@ -76,17 +75,18 @@ export async function scrapeAmazaonProduct(url: string) {
         // Construct the product object with the data we extracted and scraped
         const data = {
             url,
-            currency: currency || 'USD',
+            currency: currency || '$',
             image: imageUrls[0],
             title,
-            description: description || '',
             currentPrice: Number(currentPrice) || Number(originalPrice),
             originalPrice: Number(originalPrice) || Number(currentPrice),
             priceHistory: [],
             discountRate: Number(discountRate),
+            category: 'category',
+            reviewsCount: 100,
+            stars: 4.5,
             isOutOfStock: outOfStock,
-            category: "General",
-            createdAt: new Date(),
+            description,
             lowestPrice: Number(currentPrice) || Number(originalPrice),
             highestPrice: Number(originalPrice) || Number(currentPrice),
             averagePrice: Number(currentPrice) || Number(originalPrice),

@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { connect } from "http2";
+
 import { scrapeAmazaonProduct } from "../scraper";
 import { connectToDB } from "../mongoose";
 import Product from "../models/product.model";

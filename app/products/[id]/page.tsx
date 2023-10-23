@@ -1,3 +1,4 @@
+import PriceInfoCard from "@/components/PriceInfoCard";
 import { getProductByID } from "@/lib/actions";
 import { formatNumber } from "@/lib/ultils";
 import { Product } from "@/types";
@@ -80,6 +81,68 @@ const ProductDetails = async ({ params: { id } }: props) => {
               <p className="text-black  opacity-50 line-through text-[21px] font-bold">
                 {product.currency} {formatNumber(product.originalPrice)}
               </p>
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="flex gap-3">
+                <div className="product-stars">
+                  <Image
+                    src="/assets/icons/star.svg"
+                    alt="star"
+                    width={16}
+                    height={16}
+                  />
+                  <p className="text-sm text-primary-orange font-semibold">
+                    {product.stars || "25"}
+                  </p>
+                </div>
+                <div className="product-reviews">
+                  <Image
+                    src="/assets/icons/comment.svg"
+                    alt="reviews"
+                    width={16}
+                    height={16}
+                  />
+                  <p className="text-sm text-secondary font-semibold">
+                    {product.reviewsCount} Reviews{" "}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="my-7 flex flex-col gap-5">
+            <div className="flex gap-5 flex-wrap">
+              <PriceInfoCard
+                title="current price"
+                iconSrc="/assets/icons/price-tag.svg"
+                value={`${product.currency} ${formatNumber(
+                  product.currentPrice
+                )}`}
+                borderColor="#b6dbff"
+              />
+              <PriceInfoCard
+                title="Average price"
+                iconSrc="/assets/icons/chart.svg"
+                value={`${product.currency} ${formatNumber(
+                  product.averagePrice
+                )}`}
+                borderColor="#b6dbff"
+              />
+              <PriceInfoCard
+                title="Highest price"
+                iconSrc="/assets/icons/arrow-up.svg"
+                value={`${product.currency} ${formatNumber(
+                  product.highestPrice
+                )}`}
+                borderColor="#b6dbff"
+              />
+              <PriceInfoCard
+                title="Lowest price"
+                iconSrc="/assets/icons/arrow-down.svg"
+                value={`${product.currency} ${formatNumber(
+                  product.lowestPrice
+                )}`}
+                borderColor="#BEE75"
+              />
             </div>
           </div>
         </div>

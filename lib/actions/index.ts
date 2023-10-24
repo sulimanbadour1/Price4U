@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 
-import { scrapeAmazaonProduct } from "../scraper";
+import { scrapeAmazonProduct } from "../scraper";
 import { connectToDB } from "../mongoose";
 import Product from "../models/product.model";
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "../ultils";
@@ -16,7 +16,7 @@ export async function scrapeAndStoreProduct(productURL: string) {
         // connect to the database
         connectToDB();
 
-        const scrapedProduct = await scrapeAmazaonProduct(productURL);
+        const scrapedProduct = await scrapeAmazonProduct(productURL);
         if (!scrapedProduct) return;
 
         // Save the product to the database

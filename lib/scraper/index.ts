@@ -1,13 +1,11 @@
-'use server'
+"use server"
 
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import { extractCurrency, extractDescription, extractPrice } from '../ultils';
+import { extractCurrency, extractDescription, extractPrice } from "../utils"
 
 export async function scrapeAmazonProduct(url: string) {
-    // Logic to scrape the product
     if (!url) return;
-
 
     // BrightData proxy configuration
     const username = String(process.env.BRIGHT_DATA_USERNAME);

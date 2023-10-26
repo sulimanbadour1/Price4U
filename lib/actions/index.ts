@@ -5,51 +5,48 @@ import { revalidatePath } from 'next/cache'
 import { scrapeAmazonProduct } from "../scraper";
 import { connectToDB } from "../mongoose";
 import Product from "../models/product.model";
-import { getAveragePrice, getHighestPrice, getLowestPrice } from "../ultils";
+import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
 
 // This file will be executed in the server side only
-export async function scrapeAndStoreProduct(productURL: string) {
-    // Your code here
-    if (!productURL) return;
+export async function scrapeAndStoreProduct(productUrl: string) {
+    if (!productUrl) return;
 
     try {
-        // connect to the database
         connectToDB();
 
-        const scrapedProduct = await scrapeAmazonProduct(productURL);
+        const scrapedProduct = await scrapeAmazonProduct(productUrl);
+
         if (!scrapedProduct) return;
 
-        // Save the product to the database
         let product = scrapedProduct;
-        // check if the product already exists
+
         const existingProduct = await Product.findOne({ url: scrapedProduct.url });
+
         if (existingProduct) {
-            const updatedPriceHistory: any = [...existingProduct.priceHistory, {
-                price: scrapedProduct.currentPrice,
-                date: Date.now()
-            }];
+            const updatedPriceHistory: any = [
+                ...existingProduct.priceHistory,
+                { price: scrapedProduct.currentPrice }
+            ]
+
             product = {
                 ...scrapedProduct,
                 priceHistory: updatedPriceHistory,
                 lowestPrice: getLowestPrice(updatedPriceHistory),
                 highestPrice: getHighestPrice(updatedPriceHistory),
                 averagePrice: getAveragePrice(updatedPriceHistory),
-
             }
         }
 
         const newProduct = await Product.findOneAndUpdate(
             { url: scrapedProduct.url },
             product,
-            { new: true, upsert: true },
+            { upsert: true, new: true }
         );
+
         revalidatePath(`/products/${newProduct._id}`);
-
     } catch (error: any) {
-        throw new Error(`Error scraping product: ${error.message}`)
-
+        throw new Error(`Failed to create/update product: ${error.message}`)
     }
-
 }
 
 

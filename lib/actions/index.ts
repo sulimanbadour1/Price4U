@@ -7,6 +7,7 @@ import { connectToDB } from "../mongoose";
 import Product from "../models/product.model";
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
 import { User } from '@/types';
+import { generateEmailBody, sendEmail } from '../nodemailer';
 
 // This file will be executed in the server side only
 export async function scrapeAndStoreProduct(productUrl: string) {
